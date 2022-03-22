@@ -35,9 +35,11 @@ class FunsdDataset(Dataset):
                 str(args.max_seq_length),
             ),
         )
-        if os.path.exists(cached_features_file) and not args.overwrite_cache:
-            logger.info("Loading features from cached file %s", cached_features_file)
-            features = torch.load(cached_features_file)
+        # if os.path.exists(cached_features_file) and not args.overwrite_cache:
+        #     logger.info("Loading features from cached file %s", cached_features_file)
+        #     features = torch.load(cached_features_file)
+        if False:
+            pass
         else:
             logger.info("Creating features from dataset file at %s", args.data_dir)
             examples = read_examples_from_file(args.data_dir, mode)
@@ -80,6 +82,7 @@ class FunsdDataset(Dataset):
             [f.label_ids for f in features], dtype=torch.long
         )
         self.all_bboxes = torch.tensor([f.boxes for f in features], dtype=torch.long)
+        self.all_imgs = [f.img for f in features]
 
     def __len__(self):
         return len(self.features)
@@ -96,6 +99,8 @@ class FunsdDataset(Dataset):
             self.all_segment_ids[index],
             self.all_label_ids[index],
             self.all_bboxes[index],
+            # for layout lm v2
+            self.all_imgs[index],
         )
 
 
