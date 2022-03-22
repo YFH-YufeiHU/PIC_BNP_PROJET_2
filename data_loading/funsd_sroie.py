@@ -114,7 +114,7 @@ def get_labels(path):
         labels = ["O"] + labels
     return labels
 
-labels = get_labels("/content/PIC_BNP_PROJET/data_loading/SROIE/labels.txt")
+labels = get_labels("/content/PIC_BNP_PROJET_2/data_loading/SROIE/labels.txt")
 num_labels = len(labels)
 label_map = {i: label for i, label in enumerate(labels)}
 
@@ -125,7 +125,7 @@ pad_token_label_id = CrossEntropyLoss().ignore_index
     # Create a PyTorch dataset and corresponding dataloader
 args = {'local_rank': -1,
         'overwrite_cache': True,
-        'data_dir': '/content/PIC_BNP_PROJET/data_loading/SROIE',
+        'data_dir': '/content/PIC_BNP_PROJET_2/data_loading/SROIE',
         'model_name_or_path':'microsoft/layoutlm-base-uncased',
         'max_seq_length': 512,
         'model_type': 'layoutlm',}
@@ -161,7 +161,7 @@ train_dataset, val_dataset = random_split(
 train_sampler = RandomSampler(train_dataset)
 train_dataloader = DataLoader(train_dataset,
                               sampler=train_sampler,
-                              batch_size=2)
+                              batch_size=4)
 
 val_sampler = RandomSampler(val_dataset)
 val_dataloader = DataLoader(val_dataset,

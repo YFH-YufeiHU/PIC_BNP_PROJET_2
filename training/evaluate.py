@@ -3,7 +3,7 @@ from transformers import LayoutLMForTokenClassification
 import torch
 from torch.nn import CrossEntropyLoss
 from tqdm import tqdm
-from data_loading.funsd import eval_dataloader,pad_token_label_id,label_map
+from data_loading.funsd_sroie import eval_dataloader,pad_token_label_id,label_map
 #from data_loading.funsd_sroie import eval_dataloader,pad_token_label_id,label_map
 
 from seqeval.metrics import (
