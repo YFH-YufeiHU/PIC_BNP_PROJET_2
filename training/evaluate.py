@@ -87,7 +87,7 @@ def evaluate(model, device, eval_dataloader,labels,save_result=False,version_v2=
     }
     if save_result:
         with open("./predictions.txt", "w") as f:
-            with open("./data_loading/FUNSD/test.txt", "r") as f1:
+            with open("./data_loading/SROIE/test.txt", "r") as f1:
             # with open("./data_loading/SROIE/test.txt", "r") as f1:
                 example_id = 0
                 for line in f1:
